@@ -8,35 +8,35 @@ namespace Assignment1.Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void OnlyLowercase_ShouldBeWeak()
+        public void OnlyLowercase_ShouldBeIneligible()
         {
             PasswordChecker checker = new PasswordChecker();
             string result = checker.CheckPassword("abc");
-            Assert.AreEqual("WEAK", result);
+            Assert.AreEqual("INELIGIBLE", result);
         }
 
         [TestMethod]
-        public void OnlyUppercase_ShouldBeWeak()
+        public void OnlyUppercase_ShouldBeIneligible()
         {
             PasswordChecker checker = new PasswordChecker();
             string result = checker.CheckPassword("ABC");
-            Assert.AreEqual("WEAK", result);
+            Assert.AreEqual("INELIGIBLE", result);
         }
 
         [TestMethod]
-        public void OnlyDigits_ShouldBeWeak()
+        public void OnlyDigits_ShouldBeIneligible()
         {
             PasswordChecker checker = new PasswordChecker();
             string result = checker.CheckPassword("123");
-            Assert.AreEqual("WEAK", result);
+            Assert.AreEqual("INELIGIBLE", result);
         }
 
         [TestMethod]
-        public void OnlySpecialChars_ShouldBeWeak()
+        public void OnlySpecialChars_ShouldBeIneligible()
         {
             PasswordChecker checker = new PasswordChecker();
             string result = checker.CheckPassword("@#$");
-            Assert.AreEqual("WEAK", result);
+            Assert.AreEqual("INELIGIBLE", result);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace Assignment1.Tests
         {
             PasswordChecker checker = new PasswordChecker();
             string result = checker.CheckPassword("abcDEF");
-            Assert.AreEqual("MEDIUM", result);
+            Assert.AreEqual("INELIGIBLE", result);
         }
 
         [TestMethod]
@@ -77,11 +77,36 @@ namespace Assignment1.Tests
         }
 
         [TestMethod]
-        public void SingleCharacter_ShouldBeWeak()
+        public void SingleCharacter_ShouldBeIneligible()
         {
             PasswordChecker checker = new PasswordChecker();
             string result = checker.CheckPassword("a");
             Assert.AreEqual("WEAK", result);
         }
+
+        [TestMethod]
+        public void TooShortPassword_ShouldBeIneligible()
+        {
+            PasswordChecker checker = new PasswordChecker();
+            string result = checker.CheckPassword("aB1!");
+            Assert.AreEqual("INELIGIBLE", result);
+        }
+
+        [TestMethod]
+        public void StrongButTooShort_ShouldBeIneligible()
+        {
+            PasswordChecker checker = new PasswordChecker();
+            string result = checker.CheckPassword("aB1!c"); // meets all criteria, but < 8 chars
+            Assert.AreEqual("INELIGIBLE", result);
+        }
+
+        [TestMethod]
+        public void StrongAndLongEnough_ShouldBeStrong()
+        {
+            PasswordChecker checker = new PasswordChecker();
+            string result = checker.CheckPassword("aB1!cdef");
+            Assert.AreEqual("STRONG", result);
+        }
+
     }
 }
