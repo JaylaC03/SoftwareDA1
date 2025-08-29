@@ -9,6 +9,11 @@ namespace Assignment1.library
         //method that checks how strong a password is
         public string CheckPassword(string password)
         {
+            if (password.Length > 1 && password.Length < 8)
+            {
+                return "INELIGIBLE"; //Too short, doesnt qualify
+            }
+
             bool hasUpper = password.Any(char.IsUpper); //checks if there's at least one uppercase letter
             bool hasLower = password.Any(char.IsLower); //checks if there's at least one lowercase letter
             bool hasDigit = password.Any(char.IsDigit); //checks if there's at least one digit
