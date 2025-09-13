@@ -6,7 +6,17 @@ namespace Assignment1.library
 {
     public class PasswordChecker
     {
-        //method that checks how strong a password is
+        /// <summary>
+        /// Evaluates the strength of a given password based on length and character variety.
+        /// </summary>
+        /// <param name="password">The password string to evaluate.</param>
+        /// <returns>
+        /// Returns a string indicating the password's strength:
+        /// - "INELIGIBLE" if the password is too short or meets no criteria
+        /// - "WEAK" if it meets only one criterion
+        /// - "MEDIUM" if it meets two or three criteria
+        /// - "STRONG" if it meets all four criteria (uppercase, lowercase, digit, special character)
+        /// </returns>
         public string CheckPassword(string password)
         {
             if (password.Length > 1 && password.Length < 8)
@@ -40,3 +50,7 @@ namespace Assignment1.library
         }
     }
 }
+                            //UUIDS
+//32 characters long, only restriction: 1 bit thats currently set.
+//m & n are the only ones that jave set numbers
+//
