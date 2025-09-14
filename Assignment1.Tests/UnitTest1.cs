@@ -107,6 +107,59 @@ namespace Assignment1.Tests
             string result = checker.CheckPassword("aB1!cdef");
             Assert.AreEqual("STRONG", result);
         }
+        // Tests for UUID function
+        [TestMethod]
+        public void TestUuidLength()
+        {
+            UuidGenerator generator = new UuidGenerator();
+            string uuid = generator.GenerateUuidV4();
+            Assert.AreEqual(36, uuid.Length);
+        }
+
+        [TestMethod]
+        public void TestUuidHasDashes()
+        {
+            UuidGenerator generator = new UuidGenerator();
+            string uuid = generator.GenerateUuidV4();
+            Assert.AreEqual('-', uuid[8]);
+            Assert.AreEqual('-', uuid[13]);
+            Assert.AreEqual('-', uuid[18]);
+            Assert.AreEqual('-', uuid[23]);
+        }
+
+        [TestMethod]
+        public void TestUuidIsVersion4()
+        {
+            UuidGenerator generator = new UuidGenerator();
+            string uuid = generator.GenerateUuidV4();
+            Assert.AreEqual('4', uuid[14]);
+        }
+
+        [TestMethod]
+        public void TestUuidNotNull()
+        {
+            UuidGenerator generator = new UuidGenerator();
+            string uuid = generator.GenerateUuidV4();
+            Assert.IsNotNull(uuid);
+        }
+
+        [TestMethod]
+        public void TestUuidNotEmpty()
+        {
+            UuidGenerator generator = new UuidGenerator();
+            string uuid = generator.GenerateUuidV4();
+            Assert.IsTrue(uuid.Length > 0);
+        }
+
+        [TestMethod]
+        public void TestUuidsAreDifferent()
+        {
+            UuidGenerator generator = new UuidGenerator();
+            string uuid1 = generator.GenerateUuidV4();
+            string uuid2 = generator.GenerateUuidV4();
+            Assert.AreNotEqual(uuid1, uuid2);
+        }
+
 
     }
 }
