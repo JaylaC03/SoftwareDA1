@@ -4,6 +4,11 @@ namespace Assignment1.library
 {
     public class UuidGenerator
     {
+        /// <summary>
+        ///  Makes a random version 4 UUID.
+        /// A UUID is a long unique string, and version 4 means it’s built from random values.
+        /// </summary>
+        /// <returns>A UUID string in the standard dashed format.</returns>
         public string GenerateUuidV4()
         {
             // Create a new Random object
